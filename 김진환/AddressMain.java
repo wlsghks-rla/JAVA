@@ -19,6 +19,7 @@ public class AddressMain {
 			System.out.println("1.전체 조회 2.이름 조회 3.전화번호 조회 4.수정 5.종료");
 			System.out.println("----------------------------------------------");		
 			System.out.print("선택 > ");
+			friends = dao.makeAddress();
 			menu = Integer.parseInt(sc.nextLine());
 			
 			switch(menu) {
@@ -27,7 +28,6 @@ public class AddressMain {
 				System.out.println("1.전체 조회");
 				System.out.println("----------");
 				
-				friends = dao.makeAddress();
 				
 				for(int i=0; i<friends.length; i++) {
 					System.out.printf("%-4s\t%-20s\t%s\n", friends[i].getName(), friends[i].getHome(), friends[i].getNumber());
@@ -35,8 +35,7 @@ public class AddressMain {
 				
 				break;
 				
-			case 2:
-				
+			case 2:				
 					System.out.println("----------");
 					System.out.println("2.이름 조회");
 					System.out.println("----------");
