@@ -42,5 +42,10 @@ public class Address {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
+	public void setAddress(String address) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
