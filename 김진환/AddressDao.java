@@ -10,7 +10,7 @@ public class AddressDao {
 	List<Address> list = new ArrayList<>();
 	
 	AddressDao(){
-		list.add(new Address("홍길동", "", "010-1111-1111"));
+		list.add(new Address("홍길동", "부산광역시 해운대구 센텀로 78", "010-1111-1111"));
 		list.add(new Address("이말자", "부산광역시 해운대구 센텀로 78", "010-2222-2222"));
 		list.add(new Address("주몽왕", "대구광역시 수성구 달구벌대로 90", "010-3333-3333"));
 		list.add(new Address("고구려", "인천광역시 연수구 송도과학로 56", "010-4444-4444"));

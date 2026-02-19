@@ -1,5 +1,6 @@
 package 김진환;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,13 +13,13 @@ public class AddressMain {
 		Scanner sc = new Scanner(System.in);
 		boolean run = true; 
 		int menu = 0; // 메뉴번호
-		List<Address> friends = null;
+		List<Address> friends =  new ArrayList<>();
 		AddressDao dao = new AddressDao();
 		
 		while(run) {
-			System.out.println("----------------------------------------------");
-			System.out.println("1.전체 조회 2.이름 조회 3.전화번호 조회 4.수정 5.종료");
-			System.out.println("----------------------------------------------");		
+			System.out.println("---------------------------------------------------");
+			System.out.println("1.전체 조회 2.이름 조회 3.전화번호 조회 4.수정 5.추가 등록 6종료");
+			System.out.println("---------------------------------------------------");		
 			System.out.print("선택 > ");
 			friends = dao.makeAddress();
 			menu = Integer.parseInt(sc.nextLine());
@@ -30,7 +31,7 @@ public class AddressMain {
 				System.out.println("----------");
 				
 				
-				for(int i=0; i<friends.size(); i++) {
+				for(int i=0; i<friends.size(); i++) {					
 					System.out.printf("%-4s\t%-20s\t%s\n", friends.get(i).getName(), friends.get(i).getHome(), friends.get(i).getNumber());
 				}				
 				
@@ -131,7 +132,35 @@ public class AddressMain {
 					}
 				break;
 				
-			case 5:
+			case 5: 
+				List<Address> duplicateFri =  new ArrayList<>();;
+				System.out.println("----------");
+				System.out.println("5.추가 등록");
+				System.out.println("----------");
+				System.out.print("이름을 입력해주세요");
+				String newName = sc.nextLine();
+				System.out.print("주소를 입력해주세요");
+				String newAddress = sc.nextLine();
+				System.out.print("번호를 입력해주세요");
+				String newNumber = sc.nextLine();
+				for(int i=0; i<friends.size(); i++) {
+					
+					if(!(friends.get(i).getName()).equals(newName)) {
+						friends.add(new Address(newName, newAddress, newNumber));
+						break;
+					} else {
+						duplicateFri.add(friends.get(i));
+						duplicateFri.add(new Address(newName, newAddress, newNumber));
+						friends.addAll(duplicateFri);
+						friends.remove(i);
+						break;
+					}
+				}				
+				
+				break;
+				
+				
+			case 6:
 				run = false;
 				
 			}
