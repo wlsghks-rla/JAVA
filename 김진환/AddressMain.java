@@ -18,7 +18,7 @@ public class AddressMain {
 		
 		while(run) {
 			System.out.println("---------------------------------------------------");
-			System.out.println("1.전체 조회 2.이름 조회 3.전화번호 조회 4.수정 5.추가 등록 6종료");
+			System.out.println("1.전체 조회 2.이름 조회 3.전화번호 조회 4.수정 5.추가 등록 6.삭제 7.프로그램 종료");
 			System.out.println("---------------------------------------------------");		
 			System.out.print("선택 > ");
 			friends = dao.makeAddress();
@@ -132,8 +132,7 @@ public class AddressMain {
 					}
 				break;
 				
-			case 5: 
-				List<Address> duplicateFri =  new ArrayList<>();;
+			case 5: 				
 				System.out.println("----------");
 				System.out.println("5.추가 등록");
 				System.out.println("----------");
@@ -143,24 +142,20 @@ public class AddressMain {
 				String newAddress = sc.nextLine();
 				System.out.print("번호를 입력해주세요");
 				String newNumber = sc.nextLine();
-				for(int i=0; i<friends.size(); i++) {
-					
-					if(!(friends.get(i).getName()).equals(newName)) {
-						friends.add(new Address(newName, newAddress, newNumber));
-						break;
-					} else {
-						duplicateFri.add(friends.get(i));
-						duplicateFri.add(new Address(newName, newAddress, newNumber));
-						friends.addAll(duplicateFri);
-						friends.remove(i);
-						break;
-					}
-				}				
-				
+				dao.insertAddress(newName, newAddress, newNumber);				
 				break;
 				
+			case 6: 
+//				List<Address> duplicateFri =  new ArrayList<>();; // 동명이인일 경우
+				System.out.println("----------");
+				System.out.println("6.삭제");
+				System.out.println("----------");
+				System.out.print("이름을 입력해주세요");
+				String delName = sc.nextLine();
+				dao.delAddress(delName);				
+				break;
 				
-			case 6:
+			case 7:
 				run = false;
 				
 			}

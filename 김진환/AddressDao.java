@@ -1,13 +1,14 @@
 package 김진환;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AddressDao {
 	// 배열 크기 20
 	// 친구 20명 저장
 	// main으로 전달
-	List<Address> list = new ArrayList<>();
+	List<Address> list = new ArrayList<>(Arrays.asList());
 	
 	AddressDao(){
 		list.add(new Address("홍길동", "부산광역시 해운대구 센텀로 78", "010-1111-1111"));
@@ -34,8 +35,43 @@ public class AddressDao {
 	
 	
 	// method	
+	// 전체 조회
 	List<Address> makeAddress() {				
 		return list;
+	}
+	
+	// 친구 추가
+	List<Address> insertAddress(String newName, String newAddress, String newNumber) {
+		for(int i=0; i<list.size(); i++) {					
+			List<Address> duplicateFri =  new ArrayList<>();; // 동명이인일 경우
+			if(list.get(i).getNumber().equals(newNumber)) {// 번호가 같을 경우
+				System.out.println("동일 전화번호가 존재합니다. 다시 등록을 진행해주세요");
+				break;
+			}
+			
+			if(!(list.get(i).getName().equals(newName))) {				
+				list.add(new Address(newName, newAddress, newNumber));
+				break;
+			} 
+			else {
+				duplicateFri.add(list.get(i));
+				duplicateFri.add(new Address(newName, newAddress, newNumber));
+				list.addAll(duplicateFri);
+				list.remove(i);
+				break;
+			}
+		}		
+		return list;
+	}
+	
+	// 친구 삭제
+	void delAddress(String name) {
+		for(int i=0; i<list.size(); i++) {
+			if((list.get(i).getName()).equals(name)) {
+				list.remove(i);
+				break;
+			}		
+		}
 	}
 	
 }
